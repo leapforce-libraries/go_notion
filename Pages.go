@@ -30,7 +30,7 @@ type Page struct {
 	} `json:"last_edited_by,omitempty"`
 	Cover      json.RawMessage `json:"cover,omitempty"`
 	Icon       json.RawMessage `json:"icon,omitempty"`
-	Parent     PageParent      `json:"parent,omitempty"`
+	Parent     *PageParent     `json:"parent,omitempty"`
 	Archived   *bool           `json:"archived,omitempty"`
 	Properties json.RawMessage `json:"properties,omitempty"`
 }
