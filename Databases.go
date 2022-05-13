@@ -3,6 +3,7 @@ package notion
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 
 	errortools "github.com/leapforce-libraries/go_errortools"
 	go_http "github.com/leapforce-libraries/go_http"
@@ -17,19 +18,33 @@ type QueryDatabaseResult struct {
 	//Page       string  `json:"page"`
 }
 
-func (service *Service) QueryDatabase(databaseId string) (*QueryDatabaseResult, *errortools.Error) {
-	result := QueryDatabaseResult{}
+func (service *Service) QueryDatabase(databaseId string) (*[]Page, *errortools.Error) {
+	pages := []Page{}
 
-	requestConfig := go_http.RequestConfig{
-		Method:        http.MethodPost,
-		Url:           service.url(fmt.Sprintf("databases/%s/query", databaseId)),
-		ResponseModel: &result,
+	values := url.Values{}
+
+	for {
+		result := QueryDatabaseResult{}
+
+		requestConfig := go_http.RequestConfig{
+			Method:        http.MethodPost,
+			Url:           service.url(fmt.Sprintf("databases/%s/query?%s", databaseId, values.Encode())),
+			ResponseModel: &result,
+		}
+
+		_, _, e := service.httpRequest(&requestConfig)
+		if e != nil {
+			return nil, e
+		}
+
+		pages = append(pages, result.Results...)
+
+		if !result.HasMore || result.NextCursor == nil {
+			break
+		}
+
+		values.Set("start_cursor", *result.NextCursor)
 	}
 
-	_, _, e := service.httpRequest(&requestConfig)
-	if e != nil {
-		return nil, e
-	}
-
-	return &result, nil
+	return &pages, nil
 }
