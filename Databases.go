@@ -1,6 +1,7 @@
 package notion
 
 import (
+	"fmt"
 	errortools "github.com/leapforce-libraries/go_errortools"
 	go_http "github.com/leapforce-libraries/go_http"
 	"net/http"
@@ -27,7 +28,7 @@ func (service *Service) QueryDatabase(databaseId string) (*[]Page, *errortools.E
 
 		requestConfig := go_http.RequestConfig{
 			Method:        http.MethodPost,
-			Url:           service.url("databases/%s/query"),
+			Url:           service.url(fmt.Sprintf("databases/%s/query", databaseId)),
 			ResponseModel: &result,
 		}
 
