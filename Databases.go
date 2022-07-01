@@ -1,12 +1,9 @@
 package notion
 
 import (
-	"fmt"
-	"net/http"
-	"net/url"
-
 	errortools "github.com/leapforce-libraries/go_errortools"
 	go_http "github.com/leapforce-libraries/go_http"
+	"net/http"
 )
 
 type QueryDatabaseResult struct {
@@ -21,15 +18,21 @@ type QueryDatabaseResult struct {
 func (service *Service) QueryDatabase(databaseId string) (*[]Page, *errortools.Error) {
 	pages := []Page{}
 
-	values := url.Values{}
+	body := struct {
+		StartCursor string `json:"start_cursor"`
+	}{}
 
 	for {
 		result := QueryDatabaseResult{}
 
 		requestConfig := go_http.RequestConfig{
 			Method:        http.MethodPost,
-			Url:           service.url(fmt.Sprintf("databases/%s/query?%s", databaseId, values.Encode())),
+			Url:           service.url("databases/%s/query"),
 			ResponseModel: &result,
+		}
+
+		if body.StartCursor != "" {
+			requestConfig.BodyModel = body
 		}
 
 		_, _, e := service.httpRequest(&requestConfig)
@@ -43,7 +46,7 @@ func (service *Service) QueryDatabase(databaseId string) (*[]Page, *errortools.E
 			break
 		}
 
-		values.Set("start_cursor", *result.NextCursor)
+		body.StartCursor = *result.NextCursor
 	}
 
 	return &pages, nil
