@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/leapforce-libraries/go_errortools v0.0.0-20220629113324-7501886bb3c6
-	github.com/leapforce-libraries/go_http v0.0.0-20220622124557-97ea18437e79
+	github.com/leapforce-libraries/go_http v0.0.0-20220701140656-a2c137f0e2ef
 )
 
 require (
