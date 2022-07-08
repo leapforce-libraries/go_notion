@@ -20,19 +20,18 @@ type Page struct {
 	Id             *string                 `json:"id,omitempty"`
 	CreatedTime    *n_types.DateTimeString `json:"created_time,omitempty"`
 	LastEditedTime *n_types.DateTimeString `json:"last_edited_time,omitempty"`
-	CreatedBy      *struct {
-		Object string `json:"object"`
-		Id     string `json:"id"`
-	} `json:"created_by,omitempty"`
-	LastEditedBy *struct {
-		Object string `json:"object"`
-		Id     string `json:"id"`
-	} `json:"last_edited_by,omitempty"`
-	Cover      json.RawMessage `json:"cover,omitempty"`
-	Icon       json.RawMessage `json:"icon,omitempty"`
-	Parent     *PageParent     `json:"parent,omitempty"`
-	Archived   *bool           `json:"archived,omitempty"`
-	Properties json.RawMessage `json:"properties,omitempty"`
+	CreatedBy      *Object                 `json:"created_by,omitempty"`
+	LastEditedBy   *Object                 `json:"last_edited_by,omitempty"`
+	Cover          json.RawMessage         `json:"cover,omitempty"`
+	Icon           json.RawMessage         `json:"icon,omitempty"`
+	Parent         *PageParent             `json:"parent,omitempty"`
+	Archived       *bool                   `json:"archived,omitempty"`
+	Properties     json.RawMessage         `json:"properties,omitempty"`
+}
+
+type Object struct {
+	Object string `json:"object"`
+	Id     string `json:"id"`
 }
 
 type TextContent struct {
@@ -41,18 +40,20 @@ type TextContent struct {
 }
 
 type Text struct {
-	Type        *string     `json:"type,omitempty"`
-	Text        TextContent `json:"text"`
-	Annotations *struct {
-		Bold          bool   `json:"bold"`
-		Italic        bool   `json:"italic"`
-		Strikethrough bool   `json:"strikethrough"`
-		Underline     bool   `json:"underline"`
-		Code          bool   `json:"code"`
-		Color         string `json:"color"`
-	} `json:"annotations,omitempty"`
-	PlainText *string `json:"plain_text,omitempty"`
-	Href      *string `json:"href,omitempty"`
+	Type        *string          `json:"type,omitempty"`
+	Text        TextContent      `json:"text"`
+	Annotations *TextAnnotations `json:"annotations,omitempty"`
+	PlainText   *string          `json:"plain_text,omitempty"`
+	Href        *string          `json:"href,omitempty"`
+}
+
+type TextAnnotations struct {
+	Bold          bool   `json:"bold"`
+	Italic        bool   `json:"italic"`
+	Strikethrough bool   `json:"strikethrough"`
+	Underline     bool   `json:"underline"`
+	Code          bool   `json:"code"`
+	Color         string `json:"color"`
 }
 
 type FieldText struct {
