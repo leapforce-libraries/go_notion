@@ -35,8 +35,8 @@ type Object struct {
 }
 
 type TextContent struct {
-	Content string  `json:"content"`
-	Link    *string `json:"link"`
+	Content string    `json:"content"`
+	Link    *FieldUrl `json:"link"`
 }
 
 type Text struct {
