@@ -86,6 +86,12 @@ type FieldUrl struct {
 	Url  *string `json:"url"`
 }
 
+type FieldNumber struct {
+	Id     string   `json:"id,omitempty"`
+	Type   string   `json:"type,omitempty"`
+	Number *float64 `json:"number"`
+}
+
 func (service *Service) CreatePage(page *Page) (*Page, *errortools.Error) {
 	resultPage := Page{}
 
