@@ -86,6 +86,19 @@ type FieldUrl struct {
 	Url  *string `json:"url"`
 }
 
+type FieldFiles struct {
+	Id    string      `json:"id,omitempty"`
+	Type  string      `json:"type,omitempty"`
+	Files []FieldFile `json:"files"`
+}
+type FieldFile struct {
+	Name     string `json:"name"`
+	Type     string `json:"type"`
+	External struct {
+		Url string `json:"url"`
+	} `json:"external"`
+}
+
 type FieldNumber struct {
 	Id     string   `json:"id,omitempty"`
 	Type   string   `json:"type,omitempty"`
