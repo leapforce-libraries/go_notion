@@ -27,6 +27,7 @@ type Page struct {
 	Parent         *PageParent             `json:"parent,omitempty"`
 	Archived       *bool                   `json:"archived,omitempty"`
 	Properties     json.RawMessage         `json:"properties,omitempty"`
+	Url            *string                 `json:"url,omitempty"`
 }
 
 type Object struct {
