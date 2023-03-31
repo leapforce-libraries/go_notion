@@ -1,9 +1,9 @@
 module github.com/leapforce-libraries/go_notion
 
-go 1.18
+go 1.20
 
 require (
-	github.com/leapforce-libraries/go_errortools v0.0.0-20230111113652-2e37de91e990
+	github.com/leapforce-libraries/go_errortools v0.0.0-20230306211452-9ccee0cdafe8
 	github.com/leapforce-libraries/go_http v0.0.0-20220808204824-8a0e0bdcdfd1
 )
 
@@ -13,7 +13,7 @@ require (
 	cloud.google.com/go/compute v1.7.0 // indirect
 	cloud.google.com/go/iam v0.3.0 // indirect
 	cloud.google.com/go/storage v1.23.0 // indirect
-	github.com/getsentry/sentry-go v0.16.0 // indirect
+	github.com/getsentry/sentry-go v0.19.0 // indirect
 	github.com/gofrs/uuid v4.2.0+incompatible // indirect
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
@@ -31,7 +31,7 @@ require (
 	golang.org/x/net v0.0.0-20221002022538-bcab6841153b // indirect
 	golang.org/x/oauth2 v0.0.0-20220622183110-fd043fe589d2 // indirect
 	golang.org/x/sys v0.0.0-20220928140112-f11e5e49a4ec // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/text v0.3.8 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
 	google.golang.org/api v0.87.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
